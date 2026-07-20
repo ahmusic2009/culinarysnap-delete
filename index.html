@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Deletion - Culinary Snap</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f3ee; color: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .card { background: #fff; max-width: 480px; width: 100%; padding: 32px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    h1 { font-size: 22px; margin-bottom: 12px; color: #2d5a3d; }
+    p { font-size: 15px; line-height: 1.6; margin-bottom: 16px; color: #444; }
+    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #333; }
+    input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; font-family: inherit; margin-bottom: 16px; }
+    textarea { min-height: 90px; resize: vertical; }
+    button { width: 100%; padding: 14px; background: #2d5a3d; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    button:hover { background: #244a32; }
+    .note { font-size: 12px; color: #777; margin-top: 16px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Request Account Deletion</h1>
+    <p>Use this form to request permanent deletion of your Culinary Snap account and all associated recipe data. Requests are processed within 30 days.</p>
+    <form id="deletion-form">
+      <label for="email">Your account email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      <label for="feedback">Optional feedback</label>
+      <textarea id="feedback" name="feedback" placeholder="Why are you deleting your account? (optional)"></textarea>
+      <button type="submit">Submit Deletion Request</button>
+    </form>
+    <p class="note">By submitting, your email app will open with a pre-filled message to our support team. You can also email us directly at support@ahmusicstudio.com.</p>
+  </div>
+  <script>
+    document.getElementById('deletion-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const feedback = document.getElementById('feedback').value || 'No feedback provided';
+      const subject = encodeURIComponent('Account Deletion Request - ' + email);
+      const body = encodeURIComponent(
+        'Please delete my Culinary Snap account.\n\n' +
+        'Account email: ' + email + '\n\n' +
+        'Feedback: ' + feedback + '\n\n' +
+        'I understand this action is permanent and all my saved recipes will be removed.'
+      );
+      window.location.href = 'mailto:support@ahmusicstudio.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
